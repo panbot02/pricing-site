@@ -24,7 +24,37 @@ details{background:var(--card);border:1px solid var(--bd);border-radius:12px;pad
 .ct{text-align:center;background:linear-gradient(135deg,var(--ac),#7c3aed);color:#fff;border-radius:20px;padding:32px 16px}.ct .wx{font-size:30px;font-weight:700;letter-spacing:1px}
 .ct button{background:#fff;color:var(--ac);border:0;border-radius:10px;padding:10px 22px;margin-top:10px}
 footer{text-align:center;color:var(--mu);font-size:13px;padding:24px 0 40px}
-</style></head><body>
+</style><style id="ux">
+html{scroll-behavior:smooth}
+.c{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;will-change:transform}
+.c:hover{transform:translateY(-6px);box-shadow:0 18px 40px -12px rgba(79,70,229,.45);border-color:var(--ac)!important}
+#price .c{position:relative;overflow:hidden}
+#price .c::before{content:"";position:absolute;inset:-2px;background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),rgba(99,102,241,.18),transparent 40%);opacity:0;transition:opacity .3s;pointer-events:none}
+#price .c:hover::before{opacity:1}
+#price .c .pr{transition:transform .25s ease,color .25s}
+#price .c:hover .pr{transform:scale(1.08);transform-origin:left;color:var(--ac)}
+.btn,#cp{transition:transform .15s ease,box-shadow .2s ease,filter .2s}
+.btn:hover,#cp:hover{transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(79,70,229,.6);filter:brightness(1.08)}
+.btn:active,#cp:active{transform:translateY(0) scale(.97)}
+#highlights>div>div{transition:transform .25s ease,box-shadow .25s}
+#highlights>div>div:hover{transform:translateY(-4px);box-shadow:0 14px 30px -12px rgba(0,0,0,.35)}
+#fb .fbc:not(.masked){transition:transform .25s ease,box-shadow .25s}
+#fb .fbc:not(.masked):hover{transform:translateY(-4px);box-shadow:0 16px 36px -14px rgba(0,0,0,.35)}
+#fb .fbc img{transition:transform .4s ease}
+#fb .fbc:not(.masked):hover img{transform:scale(1.02)}
+details{transition:background .2s}
+details summary{cursor:pointer;transition:color .2s}
+details summary:hover{color:var(--ac)}
+table tr{transition:background .15s}
+table tr:hover td{background:rgba(99,102,241,.08)}
+nav a,header a{transition:color .2s}
+nav a:hover,header a:hover{color:var(--ac)}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+@media (hover:none){.c:hover,#highlights>div>div:hover,#fb .fbc:hover{transform:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}.rv{opacity:1;transform:none}}
+</style>
+</head><body>
 <header><div class="w"><b>订阅价格表</b><div><nav><a class="h" href="#price">价格</a><a class="h" href="#cmp">对比</a><a class="h" href="#flow">流程</a><a href="#fb">反馈</a><a href="#faq">FAQ</a><a href="#contact">联系</a></nav></div><button class="tg" id="tg">🌓</button></div></header>
 <main class="w">
 <div class="hero"><div style="display:inline-block;background:linear-gradient(90deg,#f59e0b,#ef4444);color:#fff;font-weight:700;border-radius:999px;padding:6px 14px;font-size:14px;margin-bottom:10px">🧾 支持开具发票</div><h1>Plus / Pro 订阅 · 两档质保可选</h1><p>价格透明，按需选择质保方案</p><p><b style="color:#f59e0b">可开发票</b> · 可协助手机验证 · 售后按规则退款</p>
@@ -70,4 +100,11 @@ var h=document.documentElement;h.dataset.t=localStorage.t||(matchMedia('(prefers
 tg.onclick=function(){h.dataset.t=h.dataset.t=='dark'?'':'dark';localStorage.t=h.dataset.t};
 cp.onclick=function(){var s=W,f=function(){var t=document.createElement('textarea');t.value=s;document.body.appendChild(t);t.select();try{document.execCommand('copy');ok.textContent='已复制'}catch(e){ok.textContent='请长按复制：'+W}t.remove()};
 if(navigator.clipboard)navigator.clipboard.writeText(s).then(function(){ok.textContent='已复制'},f);else f()};
-</script><!-- v3-rich --></body></html>
+</script><!-- v3-rich --><script>
+(function(){
+document.addEventListener('mousemove',function(e){var c=e.target.closest&&e.target.closest('#price .c');if(!c)return;var r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')});
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12});
+document.querySelectorAll('section:not(#price) h2, #highlights>div>div, #flow .c, #policy .c, #fb .fbc, details, #contact .ct').forEach(function(el){el.classList.add('rv');io.observe(el)});}
+})();
+</script>
+</body></html>
